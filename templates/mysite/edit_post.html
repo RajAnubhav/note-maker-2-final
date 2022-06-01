@@ -1,0 +1,21 @@
+{% extends 'mysite/base.html' %}
+{% block title %}
+Edit Note
+{% endblock %}
+
+{% block content %}
+
+<h1>Update Notes... </h1>
+<hr>
+<br>
+
+<div class="form-group">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button class="btn btn-outline-success"> Upload </button>
+    </form>
+</div>
+
+{% endblock %}

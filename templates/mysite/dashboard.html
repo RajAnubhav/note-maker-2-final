@@ -1,0 +1,69 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %}
+CoNe
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+
+<h1>Dashboard</h1>
+<br>
+
+<h3>Your notes, {{post}}</h3>
+{% comment %} This is for searching for the categories {% endcomment %}
+<marquee>
+    Search through categories : &nbsp;
+    {% for post in user_notes %}
+    {% if post.category %}
+    <<a href="{% url 'category-view' post.category %}" style="text-decoration:none;">{{ post.category }}</a>> &nbsp;
+        {% endif %}
+        {% endfor %}
+</marquee>
+
+<br>
+<br>
+<a href="{% url 'add-post' %}" class="text-decoration-none">Add Notes</a>
+<br>
+<br>
+<ul>
+    {% for post in object_list %}
+
+    <li><a href="{% url 'article-detail' post.pk %}" style="text-decoration:none; ">{{ post.title }}</a> -
+        {{post.author.first_name }} {{ post.author.last_name }}
+        <br>
+        Category : <a href="{% url 'category-view' post.category|slugify %}"
+            style="text-decoration:none;">{{post.category }}</a>
+        <br>
+        <small>{{ post.post_date }}</small>
+        <br>
+        {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+        <a href="{% url 'edit-post' post.pk %}" class="text-decoration-none"><small>(Edit)</small></a>
+        <a href="{% url 'delete-post' post.pk %}" class="text-decoration-none"><small>(Delete)</small></a>
+        {%endif%}
+        {% endif %}
+        <br>
+        {{ post.title_tag }}
+    </li>
+    {% comment %} {{ post.body|slice:":50" }}... {% endcomment %}
+    <!-- {{ post.body|safe }}... -->
+    <!-- {{ post.body }} -->
+
+    <br>
+    <hr>
+    <br>
+    {% endfor %}
+</ul>
+
+{% else %}
+{% comment %} This is the part when the user is not authenticated in the home-page {% endcomment %}
+
+<h1>This is the front page</h1>
+
+{% endif %}
+
+
+
+{% endblock %}

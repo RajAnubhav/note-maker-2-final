@@ -1,0 +1,31 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %}
+    NotesApp
+    {% endblock %}
+    
+    {% block content %}
+    
+    
+    {% comment %} <h1>Categories</h1> {% endcomment %}
+    <h1>#{{ cats }}</h1>
+    {% for post in category_posts %}
+        <li><a href="{% url 'article-detail' post.pk %}" style="text-decoration:none; ">{{ post.title }}</a> - <a href="{% url 'article-detail' post.pk %}" style="text-decoration:none;">{{ post.category }}</a> - {{ post.author.first_name }} {{ post.author.last_name }}
+        <br>
+        <small>{{ post.post_date }}</small>
+        <br>
+        {% if user.is_authenticated %}
+        <a href="{% url 'edit-post' post.pk %} " class="text-decoration-none"><small>(Edit)</small></a>
+        <a href="{% url 'delete-post' post.pk %}" class="text-decoration-none"><small>(Delete)</small></a>
+        {% endif %}
+    </li>
+    {{ post.body|slice:":50" }}...
+    <!-- {{ post.body|safe }}... -->
+    <!-- {{ post.body }} -->
+    
+    <br>
+    <hr>
+    <br>
+{% endfor %}
+
+{% endblock %}

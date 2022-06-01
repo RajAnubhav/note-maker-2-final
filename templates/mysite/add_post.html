@@ -1,0 +1,42 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %}
+Create a new Note
+{% endblock %}
+
+{% block content %}
+
+<h1>Add Notes</h1>
+<hr>
+<br>
+
+<div class="form-group">
+    {% if user.is_authenticated %}
+
+    <!-- 21/05/2022 this is to give the form for the image upload -->
+    <form action="" method="post" enctype="multipart/form-data">
+        <!-- multipart/form-data will allow us to add the images to the website -->
+        {% csrf_token %}
+        {{ form.media }}
+        <!--this is to add the ckeditor to the add_post.html page-->
+        {{ form.as_p }}
+        <script>
+            window.CKEDITOR_BASEPATH = '/staticfiles/ckeditor/ckeditor/';
+        </script>
+        <button class="btn btn-outline-success"> Upload </button>
+    </form>
+
+    {% endif %}
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("admin1").value = name;
+    </script>
+</div>
+
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("anubhav").placeholder = name;
+</script>
+
+
+{% endblock %}

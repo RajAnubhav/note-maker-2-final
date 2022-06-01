@@ -1,0 +1,23 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %}
+    Edit Note
+{% endblock %}
+
+{% block content %}
+
+<h1>Delete Notes... </h1>
+<hr>
+<br>
+<h4>Are you sure you want to delete this Note ?</h4>
+<small>{{ post.title }}</small>
+<div class="form-group">
+<form action="" method="post">
+    {% csrf_token %}
+    <button class="btn btn-outline-warning" id="del"> Delete </button>
+</form>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,177 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %}
+CoNe
+{% endblock %}
+
+{% block content %}
+
+{%block head%}
+<style>
+  .container {
+    padding: auto;
+    padding-left: 10px;
+    border-color: black;
+  }
+
+  .base {
+    background-color: rgb(252, 247, 241);
+    width: 100%;
+    display: relative;
+    border-radius: 15px;
+    border-color: black;
+    justify-content: center;
+    padding-left: 45px;
+    padding-bottom: 15px;
+  }
+
+  img {
+    border-radius: 10px;
+  }
+
+  hr {
+    margin-right: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  body {
+    background-color: antiquewhite;
+  }
+
+  .card-header {
+    background-color: rgb(1, 235, 252);
+  }
+</style>
+{%endblock%}
+{% if user.is_authenticated %}
+
+
+<h1>Note</h1>
+<br>
+{% comment %} This is for searching for the categories {% endcomment %}
+<!-- <marquee>
+  Search through categories : &nbsp;
+  {% for post in object_list %}
+  {% if post.category %}
+  <<a href="{% url 'category-view' post.category %}" style="text-decoration:none;">{{ post.category }}</a>> &nbsp;
+    {% endif %}
+    {% endfor %}
+</marquee> -->
+
+<br>
+<br>
+<a href="{% url 'add-post' %}" class="text-decoration-none">Add Notes</a>
+<br>
+<br>
+<ul>
+  {% for post in object_list %}
+  <div class="card">
+    <div class="card-header shadow p-15px ">
+      <a href="{% url 'article-detail' post.pk %}" style="text-decoration:none; ">
+        {{post.title}}</a> -
+      {{post.author.first_name }} {{ post.author.last_name }}
+    </div>
+    <div class="card-body shadow p-15px">
+      Category : <a href="{% url 'category-view' post.category|slugify %}" style="text-decoration:none;">{{post.category}}</a>
+      <br>
+      <small>{{ post.post_date }}</small>
+      <br>
+      {% if user.is_authenticated %}
+      {% if user.id == post.author.id %}
+      <a href="{% url 'edit-post' post.pk %}" class="text-decoration-none"><small>(Edit)</small></a>
+      <a href="{% url 'delete-post' post.pk %}" class="text-decoration-none"><small>(Delete)</small></a>
+      {%endif%}
+      {% endif %}
+    </div>
+  </div>
+  {% comment %} {{ post.body|slice:":50" }}... {% endcomment %}
+  <!-- {{ post.body|safe }}... -->
+  <!-- {{ post.body }} -->
+
+  <br>
+  <hr>
+  <br>
+  {% endfor %}
+</ul>
+
+{% else %}
+{% comment %} This is the part when the user is not authenticated in the home-page {% endcomment %}
+<!-- html part -->
+
+<!-- end the -->
+<section class="nerdy-pen">
+  <h1>CoNe welcomes you all. </h1>
+  <h1 class="nerdy-pen__text">It is
+    <span class="txt-rotate" data-period="2000"
+      data-rotate='[ "simple.", "amazing.", "customizable.", "user-friendly.", "fun!" ]'></span>
+
+  </h1>
+
+</section>
+
+<script>
+  var TxtRotate = function (el, toRotate, period) {
+    this.toRotate = toRotate;
+    this.el = el;
+    this.loopNum = 0;
+    this.period = parseInt(period, 10) || 2000;
+    this.txt = '';
+    this.tick();
+    this.isDeleting = false;
+  };
+
+  TxtRotate.prototype.tick = function () {
+    var i = this.loopNum % this.toRotate.length;
+    var fullTxt = this.toRotate[i];
+
+    if (this.isDeleting) {
+      this.txt = fullTxt.substring(0, this.txt.length - 1);
+    } else {
+      this.txt = fullTxt.substring(0, this.txt.length + 1);
+    }
+
+    this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+    var that = this;
+    var delta = 300 - Math.random() * 100;
+
+    if (this.isDeleting) { delta /= 2; }
+
+    if (!this.isDeleting && this.txt === fullTxt) {
+      delta = this.period;
+      this.isDeleting = true;
+    } else if (this.isDeleting && this.txt === '') {
+      this.isDeleting = false;
+      this.loopNum++;
+      delta = 500;
+    }
+
+    setTimeout(function () {
+      that.tick();
+    }, delta);
+  };
+
+  window.onload = function () {
+    var elements = document.getElementsByClassName('txt-rotate');
+    for (var i = 0; i < elements.length; i++) {
+      var toRotate = elements[i].getAttribute('data-rotate');
+      var period = elements[i].getAttribute('data-period');
+      if (toRotate) {
+        new TxtRotate(elements[i], JSON.parse(toRotate), period);
+      }
+    }
+    // INJECT CSS
+    var css = document.createElement("style");
+    css.type = "text/css";
+    css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+    document.body.appendChild(css);
+  };
+</script>
+<!-- ======= -->
+<!-- >>>>>>> ad80553527f81c5b7a36fe0dc683373f6554c731 -->
+
+{% endif %}
+
+
+
+{% endblock %}
