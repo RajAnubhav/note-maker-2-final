@@ -1,21 +1,33 @@
 {% extends 'mysite/base.html' %}
 
 {% block title %}
-    Login
+LOGIN
 {% endblock %}
 
 {% block content %}
+<div class="container">
 
-<h1>Login</h1>
-<hr>
-<br>
+    <br>
 
-<div class="form-group">
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-outline-success"> Login </button>
-</form>
+    <div class="form-group">
+        <form action="" method="post" class="m-auto"
+            style="display: flex; justify-content: center; flex-direction: column; width: fit-content;  ">
+            <img src="https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-veterinary-design-vet-clipart-puppy-cute-cat-logo-png-image_6565444.png"
+                alt="" width="150px" style="margin: auto">
+            {% csrf_token %}
+
+            {{ form }}
+
+            <br>
+            <button class="btn btn-info"> Login </button>
+            <div class="m-auto p-10">
+                Don't have an account?
+                <a href="{% url 'register' %}" class="m-10">Create account</a>
+            </div>
+        </form>
+    </div>
+
 </div>
+
 
 {% endblock %}

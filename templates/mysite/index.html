@@ -1,7 +1,7 @@
 {% extends 'mysite/base.html' %}
 
 {% block title %}
-CoNe
+MEOW NOTES
 {% endblock %}
 
 {% block content %}
@@ -11,24 +11,28 @@ CoNe
 {%endblock%}
 {% if user.is_authenticated %}
 
-
-<h1>Note</h1>
 <br>
+<br>
+
+<form class="d-flex flex-row my-5 my-lg-0 w-100">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
 
 <br>
 <br>
 <a href="{% url 'add-post' %}" class="text-decoration-none">Add Notes</a>
 <br>
 <br>
-<ul>
+<ul style="margin: 0px; padding: 0px">
   {% for post in object_list %}
-  <div class="card">
-    <div class="card-header shadow p-15px ">
+  <div class="d-flex justify-content-center card m-auto">
+    <div class="card-header shadow alert alert-info">
       <a href="{% url 'article-detail' post.pk %}" style="text-decoration:none; ">
         {{post.title}}</a> -
       {{post.author.first_name }} {{ post.author.last_name }}
     </div>
-    <div class="card-body shadow p-15px">
+    <div class="card-body shadow">
       Category : <a href="{% url 'category-view' post.category|slugify %}"
         style="text-decoration:none;">{{post.category}}</a>
       <br>
@@ -120,16 +124,23 @@ CoNe
       </div>
     </div>
   </div>
-  
-<div id="google_translate_element"></div>
-
-  
-  </div>
-  </div>
-  </div>
-
-
-
+</div>
+</div>
+</div>
+</section>
+<section>
+  <nav class="navbar navbar-expand-lg navbar-light  alert alert-info" role="alert" style="position: relative; bottom: 0; margin: 0;">
+    
+      <a class="navbar-brand d-flex" href="/">
+        <img src="https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-veterinary-design-vet-clipart-puppy-cute-cat-logo-png-image_6565444.png" alt="" width="70px">
+        <p style="font-size: 25px; margin-top: auto;">Meow Notes</p>
+      </a>
+      <p style="font-size: auto; margin: auto;">© 2023 Copyright Anubhav</p>
+      
+      <div id="google_translate_element" style="margin: auto;"></div>
+   
+    
+  </nav>
 </section>
 <script type="text/javascript">
   function googleTranslateElementInit() {

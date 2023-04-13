@@ -8,16 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="shortcut icon"
-    href="https://img.freepik.com/free-vector/orange-notepaper-journal-sticker-vector_53876-136279.jpg?size=338&ext=jpg&uid=R71094360&ga=GA1.2.665628700.1652546167"
-    type="image/x-icon">
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
   <title>{% block title %}{{post.title_tag}}{% endblock %}</title>
   {% block head %}{% endblock %}
 
 </head>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light  alert alert-info" role="alert" style="position: fixed; top: 0; width: 100%; margin: 0; padding: 0 25px 0 25px;">
+<body class="overflow-auto">
+  <nav class="navbar navbar-expand-lg navbar-light  alert alert-info" role="alert" style="position: fixed; top: 0; width: 100%; margin: 0; padding: 0 25px 0 25px; z-index: 1000;">
     <a class="navbar-brand d-flex" href="/">
       <img src="https://png.pngtree.com/png-vector/20230120/ourmid/pngtree-veterinary-design-vet-clipart-puppy-cute-cat-logo-png-image_6565444.png" alt="" width="70px">
       <p style="font-size: 25px; margin-top: auto;">Meow Notes</p>
@@ -34,7 +32,7 @@
           <a class="nav-link font-weight-bold" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          <a class="nav-link text-dark font-weight-bold dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Activity
           </a>
@@ -49,7 +47,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="{% url 'logout' %}">Logout</a>
+          <a class="nav-link text-dark font-weight-bold" href="{% url 'logout' %}">Logout</a>
         </li>
         {% else %}
         {% comment %} This is the login section {% endcomment %}
@@ -62,8 +60,8 @@
         {% endif %}
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
       </form>
     </div>
   </nav>

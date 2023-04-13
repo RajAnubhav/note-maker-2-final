@@ -1,21 +1,28 @@
 {% extends 'mysite/base.html' %}
 
 {% block title %}
-    Register
+REGISTER
 {% endblock %}
 
 {% block content %}
+<div class="container">
 
-<h1>Register</h1>
-<hr>
-<br>
+    <br>
 
-<div class="form-group">
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-outline-success"> Register </button>
-</form>
+    <div class="form-group">
+        <form action="" method="post" class="m-auto"
+            style="display: flex; justify-content: center; flex-direction: column; width: fit-content;">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <button class="btn btn-info"> REGISTER </button>
+            <div class="m-auto p-10">
+                Already have an account?
+                <a href="{% url 'login' %}" class="m-10">Login</a>
+            </div>
+        </form>
+    </div>
+
 </div>
 
 {% endblock %}

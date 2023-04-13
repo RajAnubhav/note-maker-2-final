@@ -6,7 +6,7 @@ from ckeditor.fields import RichTextField  # this is to import the text-editor
 
 # Create your models here.
 
-
+ 
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
@@ -49,7 +49,7 @@ class Post(models.Model):
 # =======
     title = models.CharField(max_length=255)
 # >>>>>>> ad80553527f81c5b7a36fe0dc683373f6554c731
-    title_tag = models.CharField(max_length=255, default="NotesApp")
+    title_tag = models.CharField(max_length=255, default="")
 
     # this is for adding the images by the user on the user's page
     header_image = models.ImageField(
@@ -78,7 +78,7 @@ class Post(models.Model):
     # date - 21/05/2022 : added the ckeditor to the body of the add_post.html
     body = RichTextField(blank=True, null=True)
 
-    category = models.CharField(max_length=255, default='coding')
+    category = models.CharField(max_length=255, default='')
     # adding the likes and dislike feature to this project
     likes = models.ManyToManyField(User, related_name='note_post', default='1')
 
