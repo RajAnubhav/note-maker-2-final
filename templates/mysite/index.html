@@ -7,56 +7,13 @@ CoNe
 {% block content %}
 
 {%block head%}
-<style>
-  .container {
-    padding: auto;
-    padding-left: 10px;
-    border-color: black;
-  }
-
-  .base {
-    background-color: rgb(252, 247, 241);
-    width: 100%;
-    display: relative;
-    border-radius: 15px;
-    border-color: black;
-    justify-content: center;
-    padding-left: 45px;
-    padding-bottom: 15px;
-  }
-
-  img {
-    border-radius: 10px;
-  }
-
-  hr {
-    margin-right: 25px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
-
-  body {
-    background-color: antiquewhite;
-  }
-
-  .card-header {
-    background-color: rgb(1, 235, 252);
-  }
-</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 {%endblock%}
 {% if user.is_authenticated %}
 
 
 <h1>Note</h1>
 <br>
-{% comment %} This is for searching for the categories {% endcomment %}
-<!-- <marquee>
-  Search through categories : &nbsp;
-  {% for post in object_list %}
-  {% if post.category %}
-  <<a href="{% url 'category-view' post.category %}" style="text-decoration:none;">{{ post.category }}</a>> &nbsp;
-    {% endif %}
-    {% endfor %}
-</marquee> -->
 
 <br>
 <br>
@@ -72,7 +29,8 @@ CoNe
       {{post.author.first_name }} {{ post.author.last_name }}
     </div>
     <div class="card-body shadow p-15px">
-      Category : <a href="{% url 'category-view' post.category|slugify %}" style="text-decoration:none;">{{post.category}}</a>
+      Category : <a href="{% url 'category-view' post.category|slugify %}"
+        style="text-decoration:none;">{{post.category}}</a>
       <br>
       <small>{{ post.post_date }}</small>
       <br>
@@ -99,13 +57,116 @@ CoNe
 <!-- html part -->
 
 <!-- end the -->
-<section class="nerdy-pen">
-  <h1>CoNe welcomes you all. </h1>
-  <h1 class="nerdy-pen__text">It is
-    <span class="txt-rotate" data-period="2000"
-      data-rotate='[ "simple.", "amazing.", "customizable.", "user-friendly.", "fun!" ]'></span>
+<section class="container">
+  <div class="hero">
+    <div class="row">
+      <div class="content">
+        <div class="d-flex flex-column justify-content-center m-auto" >
 
-  </h1>
+          <h1 class="d-flex font-weight-bold m-auto p-2">
+            Tame your work, organize your life
+          </h1>
+          <div class="font-weight-medium text-justify py-3" style="font-size: 25px">Remember everything and
+            tackle any project with your
+            notes, tasks, and schedule all
+            in one place.
+          </div>
+
+
+
+
+          <button type="button" class="btn btn-info my-3" style="margin: auto;">
+            <a href="{% url 'login' %}" class="text-decoration-none text-black">
+              Sign up for free
+            </a>
+          </button>
+
+        </div>
+
+        <div class="hero-row">
+          
+          <img src="https://evernote.com/c/assets/homepage-repackaging/task_hero_image@2x__en.png?2e28f0ff68efad3c" class="d-block w-100" alt="...">
+          
+          <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <p class="d-flex justify-content-center w-100 font-weight-bold">WORK ANYWHERE</p>
+                <p class="d-flex justify-content-center w-100">Keep important info handy—your notes sync automatically to all your devices.</p>
+              </div>
+              <div class="carousel-item">
+                <p class="d-flex justify-content-center w-100 font-weight-bold">REMEMBER EVERYTHING</p>
+                <p class="d-flex justify-content-center w-100">Make notes more useful by adding text, images, audio, scans, PDFs, and documents.</p>
+              </div>
+              <div class="carousel-item">
+                <p class="d-flex justify-content-center w-100 font-weight-bold">TURN TO-DO INTO DONE</p>
+                <p class="d-flex justify-content-center w-100">Bring your notes, tasks, and schedules together to get things done more easily.</p>
+              </div>
+              <div class="carousel-item">
+                <p class="d-flex justify-content-center w-100 font-weight-bold">FIND THINGS FAST</p>
+                <p class="d-flex justify-content-center w-100">Get what you need, when you need it with powerful, flexible search capabilities.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="video-modal component">
+    <div class="row">
+      <div class="content">
+        <div class="value-prop">
+
+          <h2>Find your productivity happy place</h2>
+
+
+          <div class="description">See what’s possible with Evernote</div>
+
+        </div>
+
+
+        <div class="image-container">
+          <a href="https://www.youtube.com/embed/NgkCgqIogcY/?rel=0" data-youtube-modal="NgkCgqIogcY">
+            <img src="/c/assets/homepage-repackaging/repackaging-video@2x.png?88098429b5b31cd5"
+              srcset="/c/assets/homepage-repackaging/repackaging-video@2x.png?88098429b5b31cd5 1x,  2x"
+              alt="Play YouTube video What is Evernote" />
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
 
 </section>
 
@@ -167,6 +228,8 @@ CoNe
     document.body.appendChild(css);
   };
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 <!-- ======= -->
 <!-- >>>>>>> ad80553527f81c5b7a36fe0dc683373f6554c731 -->
 

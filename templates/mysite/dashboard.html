@@ -17,7 +17,7 @@ CoNe
     Search through categories : &nbsp;
     {% for post in user_notes %}
     {% if post.category %}
-    <<a href="{% url 'category-view' post.category %}" style="text-decoration:none;">{{ post.category }}</a>> &nbsp;
+    <a href="{% url 'category-view' post.category %}" style="text-decoration:none;">{{ post.category }}</a> &nbsp;
         {% endif %}
         {% endfor %}
 </marquee>
