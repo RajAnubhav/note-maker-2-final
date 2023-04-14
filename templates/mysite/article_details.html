@@ -59,17 +59,16 @@
             {% if user.is_authenticated %}
             {% if user.id == post.author.id %}
             <!-- This is to check whether the same author is there or not for the same post i.e user.id and post.author.id must be same to do edit -->
-            <a href="{% url 'edit-post' post.pk %}"
-                class="text-decoration-none btn btn-danger btn-sm col-sm offset-9"><small>Edit</small></a>
-            <a href="{% url 'delete-post' post.pk %}"
-                class="text-decoration-none btn btn-danger btn-sm offset"><small>(Delete)</small></a>
+            <a href="{% url 'edit-post' post.pk %}">Edit</a>
+            <a href="{% url 'delete-post' post.pk %}">Delete</a>
             {% endif %}
             {% endif %}
             <hr>
             <br>
             <br>
-
-            {{ post.body|safe }}
+            <div style="width: fit-content;">
+                {{ post.body|safe }}
+            </div>
             <br>
             <br>
 
