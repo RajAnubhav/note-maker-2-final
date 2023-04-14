@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<body>
+<body class="container">
     <a href="/" class="btn ">
         <strong>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -18,7 +18,7 @@
             </svg> Back
         </strong>
     </a>
-    <div class="base shadow p-10">
+    <div class="base-shadow p-10">
         <br>
         <br>
         <form action="{% url 'like_post' post.pk %}" method="post">
